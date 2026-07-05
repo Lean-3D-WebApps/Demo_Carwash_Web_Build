@@ -1,9 +1,5 @@
 # 3D-Prototype Demo
 
-https://dahas.github.io/Demo_Carwash_Web_Build/
-
-<hr>
-
 ***“Make informed decisions – before it gets expensive.”***
 
 Digital, interactive, low-fidelity 3D prototypes are a cost-effective way to experience complex and critical process phases spatially and temporally.  
