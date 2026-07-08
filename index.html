@@ -18,7 +18,7 @@
       </div>
       <div id="unity-warning"> </div>
       <div id="unity-footer">
-        <div id="unity-logo-title-footer"><img src="TemplateData/mw-logo-title-footer.png" height="38" /></div>
+        <div id="unity-logo-title-footer"><a href="//www.martinwolf.info"><img src="TemplateData/mw-logo-title-footer.png" height="38" /></a></div>
         <div id="unity-fullscreen-button"><img src="TemplateData/fullscreen.png" height="38" /></div>
         <div id="unity-build-title">Car Wash Process</div>
       </div>
@@ -52,12 +52,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/7bb771be58cd73d23dcaa615aa2591a6.loader.js";
+      var loaderUrl = buildUrl + "/5778310d23c7f79565c524e481b2a35f.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/3fd6826299ba09e1a352f895b0d0bf12.data",
+        dataUrl: buildUrl + "/87cbbb8e54cb3849c091dcd0abda03cb.data",
         frameworkUrl: buildUrl + "/3d0c5c9a4d0d00de9ff89407a1e58b1f.framework.js",
-        codeUrl: buildUrl + "/6c8cbb7bcf42818eff3da0ea013d332b.wasm",
+        codeUrl: buildUrl + "/807541a00a7fd1a0ba1aa5880f7f8b39.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "MW Software",
         productName: "Car Wash Process",
@@ -116,6 +116,18 @@
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
               }).then((unityInstance) => {
+                const urlParams = new URLSearchParams(window.location.search);
+
+                const scene = urlParams.get('scene');
+                const autoStart = urlParams.get('start');
+
+                if (scene) {
+                  unityInstance.SendMessage('SceneLoader', 'AutoSelectScene', scene);
+                }
+                if (autoStart === '1' || autoStart === 'true') {
+                  unityInstance.SendMessage('SceneLoader', 'AutoStartScene', '');
+                }
+                
                 document.querySelector("#unity-loading-bar").style.display = "none";
                 document.querySelector("#unity-fullscreen-button").onclick = () => {
                   unityInstance.SetFullscreen(1);
